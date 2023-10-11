@@ -1,0 +1,22 @@
+﻿user_input,input
+Skipcond 000
+jump user_input_isZero_check
+jump user_input
+
+user_input_isZero_check,Skipcond 800
+jump final
+store Cur
+Subt MAX
+Skipcond 800
+jump user_input//cur<=MAX
+load Cur
+store MAX
+jump user_input
+
+//输出最大值
+final,load MAX
+Output
+halt
+Cur,DEC 0
+MAX,DEC 0
+
