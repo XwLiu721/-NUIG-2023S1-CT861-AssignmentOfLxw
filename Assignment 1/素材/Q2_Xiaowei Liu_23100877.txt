@@ -1,0 +1,34 @@
+﻿//Name:  Xiaowei Liu
+//ID: 23100877
+
+//User Input
+input
+store A
+input
+store B
+input
+store C
+input
+store D
+
+// Cal ：C + 3 * A – (2 * B + D))
+load C
+Add A
+Add A
+Add A
+Subt B
+Subt B
+Subt D
+store E
+
+//Print E
+Output
+Halt
+
+//Initial
+A,DEC 0
+B,DEC 0
+C,DEC 0
+D,DEC 0
+E,DEC 0
+

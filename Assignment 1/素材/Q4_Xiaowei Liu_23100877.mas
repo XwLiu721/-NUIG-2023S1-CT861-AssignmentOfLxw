@@ -1,0 +1,244 @@
+﻿//Name:  Xiaowei Liu
+//ID: 23100877
+
+//(Use A for n and B for k in my code)
+
+//Check if Input A is legal
+//store if yes
+//re-enter if no
+loop-checkAIsZero, input
+Skipcond 400
+jump loop-checkAOverZero
+Store A
+jump loop-checkBIsZero
+
+loop-checkAOverZero, Skipcond 800
+jump loop-checkAIsZero
+Store A
+jump loop-checkBIsZero
+
+//Check if Input A is legal
+//store if yes
+//re-enter if no
+loop-checkBIsZero, input
+Skipcond 400
+jump loop-checkBOverZero
+Store B
+jump loop-checkAMinusBIsZero
+
+loop-checkBOverZero, Skipcond 800
+jump loop-checkBIsZero
+Store B
+jump loop-checkAMinusBIsZero
+
+//Check if A is not smaller than  B
+//output if equal 
+//cal if A>B
+//re-enter if A<B
+loop-checkAMinusBIsZero, load A
+subt B
+Skipcond 400
+jump loop-checkAMinusBOverZero
+jump A1ACL
+
+loop-checkAMinusBOverZero, Skipcond 800
+jump loop-checkAIsZero
+jump A1ACL
+
+//Cal--------Cnk=n!/（n-k）！•k
+//a1:n!
+//a2:(n-k)!
+//a3:k！
+
+//A1 Cal
+A1ACL, load A
+Skipcond 400
+jump A1_normal_cal//if not zero
+jump A2ACL//if zero, no need to cal A1
+
+A1_normal_cal,load Count
+subt A
+subt Constant1
+Skipcond 400
+jump calA1
+load Temp
+store A1
+load Constant1
+store Temp
+load Constant1
+store Count
+jump A2ACL
+
+calA1,load Num
+Add Temp
+store Num
+load CountCalTime
+add Constant1
+store CountCalTim
+load CountCalTime
+subt Count
+Skipcond 400
+jump calA1
+load Num
+store Temp
+clear
+store Num
+load Count
+add Constant1
+store Count
+clear
+store CountCalTime
+jump A1_normal_cal
+
+
+//A2 
+A2ACL, load A
+subt B
+Skipcond 400
+jump A2_normal_cal
+jump A3ACL
+
+A2_normal_cal,load Count
+subt A
+add B
+subt Constant1
+Skipcond 400
+jump calA2
+load Temp
+store A2
+load Constant1
+store Temp
+load Constant1
+store Count
+jump A3ACL
+
+calA2,load Num
+Add Temp
+store Num
+load CountCalTime
+add Constant1
+store CountCalTime
+load CountCalTime
+subt Count
+Skipcond 400
+jump calA2
+load Num
+store Temp
+clear
+store Num
+load Count
+add Constant1
+store Count
+clear
+store CountCalTime
+jump A2_normal_cal
+
+
+
+//A3 
+A3ACL, load B
+Skipcond 400
+jump A3_normal_cal
+jump A1_A2
+
+A3_normal_cal,load Count
+subt B
+subt Constant1
+Skipcond 400
+jump calA3
+load Temp
+store A3
+load Constant1
+store Temp
+load Constant1
+store Count
+jump A1_A2
+
+calA3,load Num
+Add Temp
+store Num
+load CountCalTime
+add Constant1
+store CountCalTime
+load CountCalTime
+subt Count
+Skipcond 400
+jump calA3
+load Num
+store Temp
+clear
+store Num
+load Count
+add Constant1
+store Count
+clear
+store CountCalTime
+jump A3_normal_cal
+
+
+
+//Cal A1/A2
+A1_A2, load A1
+subt A2
+store A1
+load CountCalTime
+add Constant1
+store CountCalTime
+load A1
+Skipcond 000
+jump A1_A2
+load CountCalTime
+subt Constant1
+STORE A1
+clear
+store CountCalTime
+jump A1_A2_A3
+
+//Cal A1/A2/A3
+A1_A2_A3, load A1
+subt A3
+store A1
+load CountCalTime
+add Constant1
+store CountCalTime
+load A1
+Skipcond 000
+jump A1_A2_A3
+load CountCalTime
+subt Constant1
+STORE A1
+clear
+store CountCalTime
+jump print
+
+print,load A1
+store ANS
+load ANS 
+output
+HALT
+
+				
+//init
+
+//User Input
+A, DEC 0
+B, DEC 0
+
+//binomial-coefficient parameter
+A1, DEC 1
+A2, DEC 1
+A3, DEC 1
+
+//Auxiliary variables need to be initialized after each calculation
+Temp,DEC 1// euqals to (count-1)!
+Count,DEC 1 //This loop is going to cal (Count)!=count*(count-1)!
+Num,DEC 0//Temp Variable
+//Constant Variable
+CountCalTime, DEC 0
+Constant1,DEC 1
+
+//Final Result
+ANS, DEC 0
+
+
+

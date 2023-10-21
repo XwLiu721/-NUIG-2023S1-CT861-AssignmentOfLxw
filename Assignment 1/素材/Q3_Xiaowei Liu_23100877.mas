@@ -1,0 +1,29 @@
+﻿//Name:  Xiaowei Liu
+//ID: 23100877
+
+//Input
+user_input,input
+Skipcond 000//Is User Input <0
+jump user_input_isZero_check//No
+jump user_input//Yes, re-enter
+
+user_input_isZero_check,Skipcond 800//Is User Input >0
+jump final//No, Directly OutPut MAX
+store Cur//Yes,Begin Compare
+Subt MAX
+Skipcond 800//Is Cur>MAX
+jump user_input//No, No need to Update MAX, Take Next Input
+//Cur>MAX， Update MAX to Cur's Value
+load Cur
+store MAX
+jump user_input//Take Next Input
+
+//Output
+final,load MAX
+Output
+halt
+
+//Init
+Cur,DEC 0//Current Input Number
+MAX,DEC 0//Max Number Unitl Now
+
